@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
-    
+    public float speed;
 }
