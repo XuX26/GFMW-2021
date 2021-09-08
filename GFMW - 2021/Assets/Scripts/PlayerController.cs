@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir = Vector2.zero;
     Vector2 rotation = Vector2.zero;
 
+    private Vector3 startPos;
+
 
     private void Awake()
     {
@@ -27,47 +29,70 @@ public class PlayerController : MonoBehaviour
         instance = this;
         slowmo = GetComponent<SlowMotion>();
         charaController = GetComponent<CharacterController>();
+        startPos = transform.position;
     }
 
     private void Update()
     {
-        if (GameManager.instance.state != State.INGAME) return;
-        
-        GetInput();
-        UpdatePlayerRotation();
-        Move();
+        if (GameManager.instance.state == State.INGAME)
+        {
+            GetInput();
+            UpdatePlayerRotation();
+            Move();
+        }
     }
 
     #region Input
     void GetInput()
     {
+        rotation.x = Input.GetAxisRaw("Mouse X") * mouseSensi * Time.unscaledDeltaTime;
+        rotation.y += Input.GetAxisRaw("Mouse Y") * mouseSensi * Time.unscaledDeltaTime;
+        rotation.y = Mathf.Clamp(rotation.y, -60f, 60f);
         moveDir = transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical");
+        
         if (Input.GetKeyDown(KeyCode.Space))
             slowmo.SwitchSlowmoMode();
     }
     
     #endregion
-    
+
+    #region Movement
+
     void UpdatePlayerRotation()
     {
-        rotation.x = Input.GetAxisRaw("Mouse X") * mouseSensi * Time.unscaledDeltaTime;
-        rotation.y += Input.GetAxisRaw("Mouse Y") * mouseSensi * Time.unscaledDeltaTime;
-        rotation.y = Mathf.Clamp(rotation.y, -60f, 60f);
-
         cam.transform.localRotation = Quaternion.Euler(-rotation.y, 0f, 0f);
         transform.Rotate(Vector3.up * rotation.x);
     }
     
     void Move()
     {
-        if (charaController != null)
-            charaController.Move(moveDir * moveSpeed * Time.unscaledDeltaTime);
-        else
-            transform.position += moveDir * moveSpeed * Time.unscaledDeltaTime;
+        charaController.Move(moveDir * moveSpeed * Time.unscaledDeltaTime);
+    }
+    #endregion
+
+    #region Collision/Death
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("bullet") || other.CompareTag("laserWall"))
+        {
+            Debug.Log("hit by " + other.tag);
+            //play sound
+            LevelManager.instance.GameOver();
+        }
     }
 
-    public void restartPlayerPos()
+    public void UpdateOnDeath(float lerp)
     {
-        
+        transform.Rotate(new Vector3(-0.03f,-0.06f,0));
+    }
+    
+    #endregion
+    
+    public void StartRun()
+    {
+        transform.position = startPos;
+        transform.rotation = Quaternion.identity;
+        GameManager.instance.ChangeState(State.INGAME);
     }
 }
