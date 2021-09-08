@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public enum State {
@@ -11,22 +12,24 @@ public class GameManager : MonoBehaviour {
     public State state;
     public System.Action onStateChange;
 
-    private void Awake() {
+    private void Awake()
+    {
         if (instance == this) {
             Destroy(gameObject);
             return;
         }
-        
         instance = this;
     }
 
     // Start is called before the first frame update
-    private void Start() {
+    private void Start()
+    {
         ChangeState(State.INGAME);
     }
 
     // Update is called once per frame
-    private void Update() {
+    private void Update()
+    {
         if (Input.GetKeyUp(KeyCode.Escape) && state != State.PAUSE) {
             ChangeState(State.PAUSE);
         } else if (Input.GetKeyUp(KeyCode.Escape) && state == State.PAUSE) {
@@ -34,8 +37,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void ChangeState(State newState) {
+    public void ChangeState(State newState)
+    {
         state = newState;
+        switch (state)
+        {
+            case State.INGAME:
+                Cursor.visible = false;
+                break;
+            case State.PAUSE:
+                Cursor.visible = true;
+                break;
+        }
         onStateChange?.Invoke();
     }
 }
