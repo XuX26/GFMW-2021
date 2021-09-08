@@ -19,9 +19,6 @@ public class BulletSpawner : MonoBehaviour
 
     public ZoneDetector zoneDetector;
 
-    private float debugTimer;
-    
-
     private void Start()
     {
         ActiveSpawner();
@@ -35,9 +32,8 @@ public class BulletSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (zoneDetector.targetDetected)
+        if (!zoneDetector || zoneDetector.targetDetected)
         {
-            debugTimer = Time.time;
             if (ShouldShot())
                 ShotABullet();
         }
