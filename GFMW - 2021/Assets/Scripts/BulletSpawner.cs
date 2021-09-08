@@ -14,9 +14,10 @@ public class BulletSpawner : MonoBehaviour
 
     [Space]
     public GameObject bulletPrefab;
-    public BoxCollider trigger;
     public float delay;
     bool isTriggered = true;
+
+    public ZoneDetector zoneDetector;
 
     private float debugTimer;
     
@@ -34,9 +35,12 @@ public class BulletSpawner : MonoBehaviour
 
     private void Update()
     {
-        debugTimer = Time.time;
-        if (ShouldShot())
-            ShotABullet();
+        if (zoneDetector.targetDetected)
+        {
+            debugTimer = Time.time;
+            if (ShouldShot())
+                ShotABullet();
+        }
     }
 
     private bool ShouldShot()
