@@ -38,14 +38,35 @@ public class LevelManager : MonoBehaviour
     }
 
     #region LevelComplete
-    void LevelComplete()
+    public void LevelComplete()
     {
+        GameManager.instance.ChangeState(State.TRANSI);
+        Time.timeScale = 1;
         
+        levelCount++;
+        if (levelCount == coefPerLevel.Length)
+        {
+            Win();
+            return;
+        }
+        UpdateLevel();
+        ResetPlayerAndWallPos();
+    }
+
+    private void Win()
+    {
+        Debug.Log("Game won");
+    }
+
+    void UpdateLevel()
+    {
+        PlayerController.instance.slowmo.slowcoef = coefPerLevel[levelCount];
+        // + Change ambiant of the level to create different ambiance per level
     }
 
     void ResetPlayerAndWallPos()
     {
-        
+        PlayerController.instance.StartRun();
     }
     #endregion
     
