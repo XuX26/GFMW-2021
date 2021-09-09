@@ -2,19 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
     private SlowMotion slowmo;
-
+    public Slider sliderEnergy;
+    
+    [Range(1,5)] public float energyMax;
+    public LevelValues[] levels;
+    int currentLevel;
+    int nbrLevels;
+    
     private bool isGameOver;
     public float slowmoGameOverDuration = 1.5f;
     private float slowmoGameOverTimer;
-    
-    int levelCount;
-    int nbrLevels;
-    [Range(0.2f, 1f)] public float[] coefPerLevel;
 
     private void Awake()
     {
@@ -26,6 +29,11 @@ public class LevelManager : MonoBehaviour
         InitVars();
     }
 
+    private void Start()
+    {
+        UpdateLevel();
+    }
+
     private void Update()
     {
         UpdateOnGameOver();
@@ -33,8 +41,9 @@ public class LevelManager : MonoBehaviour
 
     void InitVars()
     {
-        nbrLevels = coefPerLevel.Length;
+        nbrLevels = levels.Length;
         slowmoGameOverTimer = slowmoGameOverDuration;
+        sliderEnergy.maxValue = energyMax;
     }
 
     #region LevelComplete
@@ -43,14 +52,14 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.ChangeState(State.TRANSI);
         Time.timeScale = 1;
         
-        levelCount++;
-        if (levelCount == coefPerLevel.Length)
+        currentLevel++;
+        if (currentLevel == levels.Length)
         {
             Win();
             return;
         }
         UpdateLevel();
-        ResetPlayerAndWallPos();
+        StartLevel();
     }
 
     private void Win()
@@ -60,14 +69,15 @@ public class LevelManager : MonoBehaviour
 
     void UpdateLevel()
     {
-        PlayerController.instance.slowmo.slowcoef = coefPerLevel[levelCount];
+        PlayerController.instance.slowmo.slowcoef = levels[currentLevel].slowmoCoef;
         // + Change ambiant of the level to create different ambiance per level
     }
 
-    void ResetPlayerAndWallPos()
+    void StartLevel()
     {
         PlayerController.instance.StartRun();
     }
+    
     #endregion
     
     #region GameOver
@@ -93,4 +103,18 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
+}
+
+[Serializable]
+public class LevelValues
+{
+    [Range(0.2f, 0.9f)] public float slowmoCoef;
+    public Color ambiantColor;
+
+    public LevelValues(){}
+    public LevelValues(float slowmoCoef, Color ambiantColor)
+    {
+        slowmoCoef = slowmoCoef;
+        ambiantColor = ambiantColor;
+    }
 }
