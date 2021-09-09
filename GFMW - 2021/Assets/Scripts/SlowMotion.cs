@@ -55,6 +55,8 @@ public class SlowMotion : MonoBehaviour
         
         if (energy < fadeDuration)
             slowmode = Slowmode.FADEOUT;
+        
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
     
     void ComputeCoef()
@@ -66,7 +68,10 @@ public class SlowMotion : MonoBehaviour
             slowmode = Slowmode.ACTIVE;
         
         else if (currentcoef >= 1f)
+        {
             slowmode = Slowmode.IDLE;
+            Time.fixedDeltaTime = 0.02f;
+        }
     }
   
 
