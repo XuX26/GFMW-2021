@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
             //play sound
             LevelManager.instance.GameOver();
         }
+        
         // else if (other.CompareTag("WallPusher"))
         // {
         //     Debug.Log("hit by " + other.tag);
