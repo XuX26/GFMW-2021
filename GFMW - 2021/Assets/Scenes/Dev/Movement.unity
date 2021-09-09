@@ -834,7 +834,7 @@ GameObject:
   - component: {fileID: 1459678553}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: WallPusher
+  m_TagString: laserWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
