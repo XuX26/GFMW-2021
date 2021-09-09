@@ -74,11 +74,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GameManager.instance.state != State.INGAME) return;
+        
         if (other.CompareTag("bullet") || other.CompareTag("laserWall"))
         {
             Debug.Log("hit by " + other.tag);
             //play sound
             LevelManager.instance.GameOver();
+        }
+
+        if (other.CompareTag("WinZone"))
+        {
+            Debug.Log("Level complete");
+            LevelManager.instance.LevelComplete();
         }
     }
 
@@ -100,7 +108,9 @@ public class PlayerController : MonoBehaviour
     
     public void StartRun()
     {
+        charaController.enabled = false;
         transform.position = startPos;
+        charaController.enabled = true;
         transform.rotation = Quaternion.identity;
         GameManager.instance.ChangeState(State.INGAME);
     }

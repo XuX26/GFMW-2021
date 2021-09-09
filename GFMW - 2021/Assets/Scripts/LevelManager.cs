@@ -9,16 +9,17 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     private SlowMotion slowmo;
     public Slider sliderEnergy;
+    public WallPusher WallPusher;
     
-    [Range(1,5)] public float energyMax;
-    [Range(0.1f, 10f)] public float wallSpeed;
+    [Range(1,5)] public float energyMax = 3f;
+    [Range(0.1f, 10f)] public float wallSpeed = 2f;
     public LevelValues[] levels;
     int currentLevel;
     int nbrLevels;
     
-    private bool isGameOver;
     public float slowmoGameOverDuration = 1.5f;
     private float slowmoGameOverTimer;
+    private bool isGameOver;
 
     private void Awake()
     {
@@ -72,7 +73,9 @@ public class LevelManager : MonoBehaviour
 
     void StartLevel()
     {
+        WallPusher.ResetPos();
         PlayerController.instance.StartRun();
+        Debug.Log("New lvl started ! ");
     }
     
     #endregion
