@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour
         startPos = transform.position;
     }
 
+    private void Start()
+    {
+        StartRun();
+    }
+
     private void Update()
     {
         if (GameManager.instance.state == State.INGAME)
@@ -112,7 +117,7 @@ public class PlayerController : MonoBehaviour
         transform.position = startPos;
         charaController.enabled = true;
         slowmo.RefreshEnergy();
-        transform.rotation = Quaternion.identity;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward);
         GameManager.instance.ChangeState(State.INGAME);
     }
 }
