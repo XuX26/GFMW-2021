@@ -6,13 +6,22 @@ using Object = System.Object;
 
 public class Bullet : MonoBehaviour
 {
-    [Range(1f, 10f)] public float bulletSpeed = 5f;
-    Rigidbody rb;
+    public float bulletSpeed = 5f;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * bulletSpeed;
         Destroy(gameObject, 6f);
+    }
+
+    private void Update()
+    {
+        if(GameManager.instance.state == State.INGAME)
+            transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+         if(other.CompareTag("laserWall") || other.CompareTag("Player") || other.CompareTag("WallPusher"))
+             Destroy(gameObject);
     }
 }

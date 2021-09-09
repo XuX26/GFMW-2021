@@ -17,7 +17,7 @@ public class BulletSpawner : MonoBehaviour
     public float delay;
     bool isTriggered = true;
 
-    public ZoneDetector zoneDetector;
+    [SerializeField] Transform maxRange;
 
     private void Start()
     {
@@ -32,11 +32,22 @@ public class BulletSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!zoneDetector || zoneDetector.targetDetected)
+        if (IsInRange())
         {
             if (ShouldShot())
                 ShotABullet();
         }
+    }
+
+    bool IsInRange()
+    {
+        if (maxRange)
+        {
+            float playerPosZ = PlayerController.instance.transform.position.z;
+            return (playerPosZ > maxRange.position.z && playerPosZ < transform.position.z + 1);
+        }
+        Debug.LogWarning("null ref on maxRange so the turret always shot");
+        return true;
     }
 
     private bool ShouldShot()
