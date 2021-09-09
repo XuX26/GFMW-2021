@@ -6,12 +6,13 @@ using Object = System.Object;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletSpeed = 5f;
+    [HideInInspector] public float bulletSpeed = 5f;
     public SoundEffect sfx;
 
     void Awake()
     {
         sfx.InitSource(gameObject);
+        sfx.source.spatialBlend = 1;
         Destroy(gameObject, 6f);
     }
 

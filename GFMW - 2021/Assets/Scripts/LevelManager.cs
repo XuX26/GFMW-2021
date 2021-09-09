@@ -56,6 +56,7 @@ public class LevelManager : MonoBehaviour
             Win();
             return;
         }
+        AudioManager.instance.Play("nextLevel", currentLevel);
         UpdateLevel();
         StartLevel();
     }
@@ -75,6 +76,7 @@ public class LevelManager : MonoBehaviour
     {
         WallPusher.ResetPos();
         PlayerController.instance.StartRun();
+        AudioManager.instance.Play("startLevel", currentLevel);
         Debug.Log("New lvl started ! ");
     }
     

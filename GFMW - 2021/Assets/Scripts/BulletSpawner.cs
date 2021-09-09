@@ -23,6 +23,7 @@ public class BulletSpawner : MonoBehaviour
     private void Awake()
     {
         sfxShot.InitSource(gameObject);
+        sfxShot.source.spatialBlend = 1;
     }
 
     private void Update()
