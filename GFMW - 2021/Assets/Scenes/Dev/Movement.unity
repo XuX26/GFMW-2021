@@ -931,7 +931,6 @@ GameObject:
   m_Component:
   - component: {fileID: 655780617}
   - component: {fileID: 655780619}
-  - component: {fileID: 655780618}
   m_Layer: 0
   m_Name: WinZone
   m_TagString: WinZone
@@ -947,24 +946,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655780616}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.44, y: 0, z: -37.5}
+  m_LocalPosition: {x: 0.44, y: 0, z: -0.14}
   m_LocalScale: {x: 1.7826, y: 1.668, z: 1}
   m_Children: []
   m_Father: {fileID: 367084185}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &655780618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655780616}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99d7df71679154418e58406881903fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &655780619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2350,10 +2337,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderEnergy: {fileID: 1825400556}
+  WallPusher: {fileID: 1459678552}
   energyMax: 5
-  wallSpeed: 0
+  wallSpeed: 2.12
   levels:
   - slowmoCoef: 0.25
+    ambiantColor: {r: 0, g: 0, b: 0, a: 0}
+  - slowmoCoef: 0.5
+    ambiantColor: {r: 0, g: 0, b: 0, a: 0}
+  - slowmoCoef: 0.75
     ambiantColor: {r: 0, g: 0, b: 0, a: 0}
   slowmoGameOverDuration: 2
 --- !u!1 &1665259793

@@ -58,7 +58,8 @@ public class SlowMotion : MonoBehaviour
         
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
-    
+    #endregion
+
     void ComputeCoef()
     {
         if(slowmode != Slowmode.FADEIN && slowmode != Slowmode.FADEOUT) return;
@@ -81,7 +82,6 @@ public class SlowMotion : MonoBehaviour
         currentcoef += fadeSpeed;
         currentcoef = Mathf.Clamp(currentcoef, slowcoef, 1f);
     }
-    #endregion
     
     public void SwitchSlowmoMode()
     {
@@ -90,5 +90,10 @@ public class SlowMotion : MonoBehaviour
             slowmode = Slowmode.FADEIN;
         else if(slowmode == Slowmode.ACTIVE || slowmode == Slowmode.FADEIN)
             slowmode = Slowmode.FADEOUT;
+    }
+
+    public void RefreshEnergy()
+    {
+        energy = energyMax;
     }
 }

@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour
         charaController.enabled = false;
         transform.position = startPos;
         charaController.enabled = true;
+        slowmo.RefreshEnergy();
         transform.rotation = Quaternion.identity;
         GameManager.instance.ChangeState(State.INGAME);
     }
