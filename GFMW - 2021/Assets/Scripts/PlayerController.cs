@@ -80,12 +80,6 @@ public class PlayerController : MonoBehaviour
             //play sound
             LevelManager.instance.GameOver();
         }
-        
-        // else if (other.CompareTag("WallPusher"))
-        // {
-        //     Debug.Log("hit by " + other.tag);
-        //     transform.position += Vector3.forward * 0.5f;
-        // }
     }
 
     private void OnTriggerStay(Collider other)
@@ -93,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("WallPusher"))
         {
             Debug.Log("hit by " + other.tag);
-            charaController.Move(Vector3.forward * other.GetComponent<WallPusher>().speed * Time.unscaledDeltaTime);
+            charaController.Move(Vector3.forward * LevelManager.instance.wallSpeed * Time.unscaledDeltaTime);
         }
     }
 

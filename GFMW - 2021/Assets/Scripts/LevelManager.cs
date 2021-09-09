@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public Slider sliderEnergy;
     
     [Range(1,5)] public float energyMax;
+    [Range(0.1f, 10f)] public float wallSpeed;
     public LevelValues[] levels;
     int currentLevel;
     int nbrLevels;
@@ -21,10 +22,6 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        // if (instance) {
-        //     Destroy(gameObject);
-        //     return;
-        // }
         instance = this;
         InitVars();
     }
