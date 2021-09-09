@@ -7,12 +7,18 @@ using UnityEngine.PlayerLoop;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    [HideInInspector] public SlowMotion slowmo;
+    CharacterController charaController;
 
-    public float mouseSensi = 75f;
+    [Range(100f, 750f)] public float mouseSensi = 500f;
+    [Range(5f, 15f)] public float moveSpeed;
 
     public Camera cam;
     Vector3 moveDir = Vector2.zero;
     Vector2 rotation = Vector2.zero;
+
+    private Vector3 startPos;
+
 
     private void Awake()
     {
@@ -21,40 +27,72 @@ public class PlayerController : MonoBehaviour
             return;
         }
         instance = this;
+        slowmo = GetComponent<SlowMotion>();
+        charaController = GetComponent<CharacterController>();
+        startPos = transform.position;
     }
 
     private void Update()
     {
-        if (GameManager.instance.state != State.INGAME) return;
-        
-        GetInput();
-        UpdatePlayerRotation();
+        if (GameManager.instance.state == State.INGAME)
+        {
+            GetInput();
+            UpdatePlayerRotation();
+            Move();
+        }
     }
 
     #region Input
     void GetInput()
     {
-        moveDir = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        rotation.x = Input.GetAxisRaw("Mouse X") * mouseSensi * Time.unscaledDeltaTime;
+        rotation.y += Input.GetAxisRaw("Mouse Y") * mouseSensi * Time.unscaledDeltaTime;
+        rotation.y = Mathf.Clamp(rotation.y, -60f, 60f);
+        moveDir = transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical");
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+            slowmo.SwitchSlowmoMode();
     }
     
+    #endregion
+
+    #region Movement
+
     void UpdatePlayerRotation()
     {
-        rotation.x = Input.GetAxis("Mouse X") * mouseSensi * Time.deltaTime;
-        rotation.y += Input.GetAxis("Mouse Y") * mouseSensi * Time.deltaTime;
-        rotation.y = Mathf.Clamp(rotation.y, -80f, 80f);
-
         cam.transform.localRotation = Quaternion.Euler(-rotation.y, 0f, 0f);
         transform.Rotate(Vector3.up * rotation.x);
     }
-    #endregion
     
     void Move()
     {
-        transform.position += moveDir;
+        charaController.Move(moveDir * moveSpeed * Time.unscaledDeltaTime);
+    }
+    #endregion
+
+    #region Collision/Death
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("bullet") || other.CompareTag("laserWall"))
+        {
+            Debug.Log("hit by " + other.tag);
+            //play sound
+            LevelManager.instance.GameOver();
+        }
     }
 
-    private void FixedUpdate()
+    public void UpdateOnDeath(float lerp)
     {
-        Move();
+        transform.Rotate(new Vector3(-0.03f,-0.06f,0));
+    }
+    
+    #endregion
+    
+    public void StartRun()
+    {
+        transform.position = startPos;
+        transform.rotation = Quaternion.identity;
+        GameManager.instance.ChangeState(State.INGAME);
     }
 }

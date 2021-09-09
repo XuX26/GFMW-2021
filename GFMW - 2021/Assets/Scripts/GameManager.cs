@@ -1,24 +1,27 @@
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum State {
     PAUSE,
     INGAME,
+    TRANSI,
 }
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
-    public State state;
+    public State state = State.INGAME;
     public System.Action onStateChange;
 
     private void Awake()
     {
-        if (instance == this) {
+        if (instance) {
             Destroy(gameObject);
             return;
         }
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -35,6 +38,11 @@ public class GameManager : MonoBehaviour {
         } else if (Input.GetKeyUp(KeyCode.Escape) && state == State.PAUSE) {
             ChangeState(State.INGAME);
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ReloadScene();
+        }
     }
 
     public void ChangeState(State newState)
@@ -42,13 +50,22 @@ public class GameManager : MonoBehaviour {
         state = newState;
         switch (state)
         {
-            case State.INGAME:
-                Cursor.visible = false;
-                break;
             case State.PAUSE:
                 Cursor.visible = true;
                 break;
+            case State.INGAME:
+                Cursor.visible = false;
+                break;
+            case State.TRANSI:
+                Cursor.visible = false;
+                break;
         }
         onStateChange?.Invoke();
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 }
