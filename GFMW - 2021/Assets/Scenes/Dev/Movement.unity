@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &60586060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 60586062}
+  - component: {fileID: 60586061}
+  m_Layer: 0
+  m_Name: TurretTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &60586061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60586060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acce664018f00944da641a6d924305d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 1
+--- !u!4 &60586062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60586060}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.059999973, z: -0.774}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1033501061}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &214095243
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,8 +313,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &267820434
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -383,8 +433,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &317342467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -512,7 +568,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &335750424
 GameObject:
@@ -541,8 +597,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1003253068}
   - {fileID: 367084185}
+  - {fileID: 1003253068}
+  - {fileID: 1033501061}
   m_Father: {fileID: 1299706925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -577,7 +634,7 @@ Transform:
   - {fileID: 1951602538}
   - {fileID: 913816213}
   m_Father: {fileID: 335750425}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378996067
 GameObject:
@@ -614,8 +671,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &378996069
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -742,8 +805,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &427974637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -919,7 +988,7 @@ Transform:
   - {fileID: 1580008245}
   - {fileID: 1952967216}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &655780616
 GameObject:
@@ -965,6 +1034,71 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &663216072
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 161034640613151856, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.82879496
+      objectReference: {fileID: 0}
+    - target: {fileID: 161034640613151856, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.642
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904351691738923973, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570445462473984967, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
+      propertyPath: m_Name
+      value: NeonCrossbow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c4b66c2f13ceda4eb5ba78480c7ffd7, type: 3}
 --- !u!1 &679248210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1192,7 @@ RectTransform:
   m_Children:
   - {fileID: 1825400554}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1202,7 +1336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &813746147
 GameObject:
@@ -1336,8 +1470,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &843132893
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1431,22 +1571,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - clipName: Spawn
-    clip: []
-    volume: 0
-    priority: 0
+  - clipName: music
+    clip:
+    - {fileID: 8300000, guid: 329445ddeefafdc4caeaccc0084d6d63, type: 3}
+    volume: 0.05
+    loop: 1
+    source: {fileID: 0}
+  - clipName: nextLevel
+    clip:
+    - {fileID: 8300000, guid: f7f725e86ddbe4049b4af5ce61fd26a6, type: 3}
+    - {fileID: 8300000, guid: 5b0e0cb6dda85d948acfd25348b47c39, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
-  - clipName: 
-    clip: []
-    volume: 0
-    priority: 0
+  - clipName: gameOver
+    clip:
+    - {fileID: 8300000, guid: 58b73aad2806794459b1a0c12cdc0918, type: 3}
+    - {fileID: 8300000, guid: 2d9e0c0ed5323d942a74e63a8bb59e4f, type: 3}
+    - {fileID: 8300000, guid: 3a94dd8f0fbf92445a0aaf76fe776fe5, type: 3}
+    - {fileID: 8300000, guid: 0b7d704fb45c58245a92837d5c5e3bcd, type: 3}
+    - {fileID: 8300000, guid: c6ad7867deb134440a563aba7817cfd5, type: 3}
+    - {fileID: 8300000, guid: 114f431c17c88e44ebedad95fc90c669, type: 3}
+    - {fileID: 8300000, guid: a52ded1fcd0a3484fb7a2fb33f1459da, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
-  - clipName: 
-    clip: []
-    volume: 0
-    priority: 0
+  - clipName: startLevel
+    clip:
+    - {fileID: 8300000, guid: f9d4b69a69874ff45a718eb7d574b8ea, type: 3}
+    - {fileID: 8300000, guid: 3db2b3aa4ba5f2d4aac0b7da0ee9b1a6, type: 3}
+    - {fileID: 8300000, guid: f00087d41d15a6f47b8089ff4ff64bc3, type: 3}
+    volume: 1
     loop: 0
     source: {fileID: 0}
 --- !u!4 &851273289
@@ -1461,7 +1616,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &893458106
 GameObject:
@@ -1665,7 +1820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003253068}
   m_Layer: 0
-  m_Name: Objects
+  m_Name: Spawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1678,7 +1833,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003253067}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1693,7 +1848,38 @@ Transform:
   - {fileID: 317342465}
   - {fileID: 1533535679}
   m_Father: {fileID: 335750425}
-  m_RootOrder: 0
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1033501060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1033501061}
+  m_Layer: 0
+  m_Name: TurretTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1033501061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033501060}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 60586062}
+  m_Father: {fileID: 335750425}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1299706924
 GameObject:
@@ -1724,7 +1910,7 @@ Transform:
   m_Children:
   - {fileID: 335750425}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1435609058
 GameObject:
@@ -1775,8 +1961,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &1435609061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1932,11 +2124,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459678547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.059999973, z: -2.761}
+  m_LocalPosition: {x: 0, y: 0.059999973, z: -22.11}
   m_LocalScale: {x: 9.4383, y: 1.832, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1459678552
 MonoBehaviour:
@@ -2012,8 +2204,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &1514304803
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2126,8 +2324,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &1533535681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2237,11 +2441,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08265be5d90e66e4fa421f638fbbc628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 2
+  bulletSpeed: 1.27
   fireRate: 0.5
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 0
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &1554021847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2568,7 +2778,7 @@ Transform:
   - {fileID: 813746150}
   - {fileID: 589483697}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1825400554 stripped
 RectTransform:
@@ -2764,8 +2974,14 @@ MonoBehaviour:
   bulletSpeed: 2.07
   fireRate: 1
   bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 60586062}
 --- !u!65 &2059694414
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -88,6 +88,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.ChangeState(State.TRANSI);
         isGameOver = true;
         slowmoGameOverTimer = slowmoGameOverDuration;
+        AudioManager.instance.Play("gameOver");
     }
     
     private void UpdateOnGameOver()

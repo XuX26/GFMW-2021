@@ -17,6 +17,8 @@ public class Bullet : MonoBehaviour
     {
         if(GameManager.instance.state == State.INGAME)
             transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+        else
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
