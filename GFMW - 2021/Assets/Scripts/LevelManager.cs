@@ -84,9 +84,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!isGameOver) return;
 
-        Debug.Log(slowmoGameOverTimer);
         slowmoGameOverTimer -= Time.unscaledDeltaTime;
-        Debug.Log(slowmoGameOverTimer);
         float lerp = Mathf.Clamp(slowmoGameOverTimer/slowmoGameOverDuration, 0f, 1f);
         Time.timeScale = lerp;
         PlayerController.instance.UpdateOnDeath(lerp);
