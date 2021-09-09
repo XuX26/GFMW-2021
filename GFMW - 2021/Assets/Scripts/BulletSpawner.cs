@@ -32,6 +32,7 @@ public class BulletSpawner : MonoBehaviour
             if (ShouldShot())
                 ShotABullet();
         }
+        sfxShot.UpdatePitchToTimeScale();
     }
 
     bool IsInRange()
