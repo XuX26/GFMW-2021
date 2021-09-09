@@ -1135,13 +1135,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554021844}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.42, y: 0.5, z: 19.55}
+  m_LocalRotation: {x: -0, y: 0.7071072, z: 0.7071064, w: 0}
+  m_LocalPosition: {x: -0.429, y: -0.37, z: 14.599}
   m_LocalScale: {x: 0.36547902, y: 0.29791, z: 1}
   m_Children: []
   m_Father: {fileID: 1003253068}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!114 &1554021846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,10 +1154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08265be5d90e66e4fa421f638fbbc628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 2.07
-  fireRate: 1
-  bulletPrefab: {fileID: 8008154259253132896, guid: b7331e793032ea64781f713f5b98439a, type: 3}
-  delay: 2
+  bulletSpeed: 2
+  fireRate: 0.5
+  bulletPrefab: {fileID: 8008154259253132896, guid: 61ae1d9a53a1fa74da8385c2c9ea1293, type: 3}
+  delay: 0
   zoneDetector: {fileID: 0}
 --- !u!65 &1554021847
 BoxCollider:
@@ -1358,10 +1358,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184115d8169591d49859499ec686ac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliderEnergy: {fileID: 1825400556}
+  energyMax: 5
+  levels:
+  - slowmoCoef: 0.25
+    ambiantColor: {r: 0, g: 0, b: 0, a: 0}
   slowmoGameOverDuration: 2
-  coefPerLevel:
-  - 0
-  - 0
 --- !u!1 &1665259793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,8 +1427,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05893ec2847b854448a99964546bbe9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 1.25
   slowcoef: 0.514
-  isSlowMode: 0
+  slowmode: 0
+  currentcoef: 1
 --- !u!114 &1722999198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,6 +1486,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4193395781783278131, guid: 318197ce9ddc7ac43b3dd2962cc99f91, type: 3}
   m_PrefabInstance: {fileID: 4193395780228035801}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1825400556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4193395781783278133, guid: 318197ce9ddc7ac43b3dd2962cc99f91, type: 3}
+  m_PrefabInstance: {fileID: 4193395780228035801}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1952967215
 GameObject:
   m_ObjectHideFlags: 0
