@@ -80,6 +80,21 @@ public class PlayerController : MonoBehaviour
             //play sound
             LevelManager.instance.GameOver();
         }
+        
+        // else if (other.CompareTag("WallPusher"))
+        // {
+        //     Debug.Log("hit by " + other.tag);
+        //     transform.position += Vector3.forward * 0.5f;
+        // }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("WallPusher"))
+        {
+            Debug.Log("hit by " + other.tag);
+            charaController.Move(Vector3.forward * other.GetComponent<WallPusher>().speed * Time.unscaledDeltaTime);
+        }
     }
 
     public void UpdateOnDeath(float lerp)
