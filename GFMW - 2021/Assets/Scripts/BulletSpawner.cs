@@ -28,6 +28,8 @@ public class BulletSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.state != State.INGAME) return;
+        
         if (IsInRange())
         {
             if (ShouldShot())
