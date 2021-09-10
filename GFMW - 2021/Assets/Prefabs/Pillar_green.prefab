@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &18905003970195940
+--- !u!1 &245854686006716872
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,35 +8,35 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6492471591054457249}
+  - component: {fileID: 516219794114691491}
   m_Layer: 0
-  m_Name: Pillar_green
+  m_Name: pillar_green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6492471591054457249
+--- !u!4 &516219794114691491
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18905003970195940}
+  m_GameObject: {fileID: 245854686006716872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8331647135548996274}
+  - {fileID: 2822609874836483108}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8364677164770073945
+--- !u!1001 &2351254783175560143
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6492471591054457249}
+    m_TransformParent: {fileID: 516219794114691491}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a2d5160201efd674685bc77779b9d5e9, type: 3}
       propertyPath: m_RootOrder
@@ -85,15 +85,15 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a2d5160201efd674685bc77779b9d5e9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 77faa7d48b7eea141b540f66f0267a97, type: 2}
+      objectReference: {fileID: 2100000, guid: b96f057eb6024a446954cf95b4fb36ae, type: 2}
     - target: {fileID: 919132149155446097, guid: a2d5160201efd674685bc77779b9d5e9, type: 3}
       propertyPath: m_Name
       value: Neon_pillar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2d5160201efd674685bc77779b9d5e9, type: 3}
---- !u!4 &8331647135548996274 stripped
+--- !u!4 &2822609874836483108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a2d5160201efd674685bc77779b9d5e9, type: 3}
-  m_PrefabInstance: {fileID: 8364677164770073945}
+  m_PrefabInstance: {fileID: 2351254783175560143}
   m_PrefabAsset: {fileID: 0}

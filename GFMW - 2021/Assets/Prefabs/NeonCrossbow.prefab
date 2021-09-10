@@ -63,7 +63,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: 573e59dba089d3944ae0994022981b45, type: 2}
   - {fileID: 2100000, guid: 4e623827b6259d9469e97604d1c38a37, type: 2}
   - {fileID: 2100000, guid: e3c83913b52012a489a10151ceb142f3, type: 2}
-  - {fileID: 2100000, guid: bf023f75645cf5844a0bc7c383896155, type: 2}
+  - {fileID: 2100000, guid: 5bcdd923fad869c4eba3da55b45de642, type: 2}
   - {fileID: 2100000, guid: 94de79750d6d057448ebaa0a5eda0bec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -147,5 +147,11 @@ MonoBehaviour:
   bulletSpeed: 7
   fireRate: 2.5
   bulletPrefab: {fileID: 8008154259253132896, guid: a9ca5b9da7a2b9c4a858b0bf09770dc6, type: 3}
+  sfxShot:
+    clipName: 
+    clip: []
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   delay: 2
-  zoneDetector: {fileID: 0}
+  maxRange: {fileID: 0}
