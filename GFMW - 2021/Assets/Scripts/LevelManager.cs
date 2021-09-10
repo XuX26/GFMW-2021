@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour
         nbrLevels = levels.Length;
         slowmoGameOverTimer = slowmoGameOverDuration;
         sliderEnergy.maxValue = energyMax;
+        cinematic.played += OnCinematicStart;
         cinematic.stopped += OnCinematicEnd;
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,12 +23,12 @@ public class GameManager : MonoBehaviour {
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+        
     }
 
-    // Start is called before the first frame update
     private void Start()
     {
-        ChangeState(State.INGAME);
+        LevelManager.instance.cinematic.Play();
     }
 
     // Update is called once per frame
