@@ -5,18 +5,23 @@ using UnityEngine;
 
 public class WallPusher : MonoBehaviour
 {
-    [Range(0.1f, 10f)] public float speed;
-    void Update()
+    private float speed;
+    private Vector3 startPos;
+    
+    private void Start()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        speed = LevelManager.instance.wallSpeed;
+        startPos = transform.position;
     }
 
-    // private void OnCollisionEnter(Collision other)
-    // {
-    //     if (other.gameObject.CompareTag("Player"))
-    //     {
-    //         Debug.Log("Collide with wall");
-    //         other.transform.position += Vector3.forward * 0.5f;
-    //     }
-    // }
+    public void ResetPos()
+    {
+        transform.position = startPos;
+    }
+
+    void Update()
+    {
+        if (GameManager.instance.state == State.INGAME)
+            transform.position += Vector3.forward * speed * Time.deltaTime;
+    }
 }

@@ -9,22 +9,20 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     private SlowMotion slowmo;
     public Slider sliderEnergy;
+    public WallPusher WallPusher;
     
-    [Range(1,5)] public float energyMax;
+    [Range(1,5)] public float energyMax = 3f;
+    [Range(0.1f, 10f)] public float wallSpeed = 2f;
     public LevelValues[] levels;
     int currentLevel;
     int nbrLevels;
     
-    private bool isGameOver;
     public float slowmoGameOverDuration = 1.5f;
     private float slowmoGameOverTimer;
+    private bool isGameOver;
 
     private void Awake()
     {
-        // if (instance) {
-        //     Destroy(gameObject);
-        //     return;
-        // }
         instance = this;
         InitVars();
     }
@@ -58,6 +56,7 @@ public class LevelManager : MonoBehaviour
             Win();
             return;
         }
+        AudioManager.instance.Play("nextLevel", currentLevel);
         UpdateLevel();
         StartLevel();
     }
@@ -75,7 +74,10 @@ public class LevelManager : MonoBehaviour
 
     void StartLevel()
     {
+        WallPusher.ResetPos();
         PlayerController.instance.StartRun();
+        AudioManager.instance.Play("startLevel", currentLevel);
+        Debug.Log("New lvl started ! ");
     }
     
     #endregion
@@ -88,6 +90,7 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.ChangeState(State.TRANSI);
         isGameOver = true;
         slowmoGameOverTimer = slowmoGameOverDuration;
+        AudioManager.instance.Play("gameOver");
     }
     
     private void UpdateOnGameOver()

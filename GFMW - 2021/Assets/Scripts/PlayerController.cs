@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector2 rotation = Vector2.zero;
 
     private Vector3 startPos;
+    private Quaternion startLookDir;
 
 
     private void Awake()
@@ -30,6 +31,12 @@ public class PlayerController : MonoBehaviour
         slowmo = GetComponent<SlowMotion>();
         charaController = GetComponent<CharacterController>();
         startPos = transform.position;
+        startLookDir = cam.transform.rotation;
+    }
+
+    private void Start()
+    {
+        StartRun();
     }
 
     private void Update()
@@ -74,18 +81,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GameManager.instance.state != State.INGAME) return;
+        
         if (other.CompareTag("bullet") || other.CompareTag("laserWall"))
         {
             Debug.Log("hit by " + other.tag);
             //play sound
             LevelManager.instance.GameOver();
         }
-        
-        // else if (other.CompareTag("WallPusher"))
-        // {
-        //     Debug.Log("hit by " + other.tag);
-        //     transform.position += Vector3.forward * 0.5f;
-        // }
+
+        if (other.CompareTag("WinZone"))
+        {
+            Debug.Log("Level complete");
+            LevelManager.instance.LevelComplete();
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -93,7 +102,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("WallPusher"))
         {
             Debug.Log("hit by " + other.tag);
-            charaController.Move(Vector3.forward * other.GetComponent<WallPusher>().speed * Time.unscaledDeltaTime);
+            charaController.Move(Vector3.forward * LevelManager.instance.wallSpeed * Time.unscaledDeltaTime);
         }
     }
 
@@ -106,8 +115,12 @@ public class PlayerController : MonoBehaviour
     
     public void StartRun()
     {
+        charaController.enabled = false;
         transform.position = startPos;
+        charaController.enabled = true;
+        slowmo.RefreshEnergy();
         transform.rotation = Quaternion.identity;
+        cam.transform.rotation = startLookDir;
         GameManager.instance.ChangeState(State.INGAME);
     }
 }
