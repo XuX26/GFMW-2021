@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lantern
+  m_Name: Neon_pillar_green
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION _NORMALMAP
   m_LightmapFlags: 2
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 6b1b2c72c9c1ce940a0f6a969eb8e333, type: 3}
+        m_Texture: {fileID: 2800000, guid: ef110aa4e725c294a8d22d5c0c6cf3ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -36,11 +36,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: c7a3a638d0e85be4e819edd326f04379, type: 3}
+        m_Texture: {fileID: 2800000, guid: ed5ced3bee983b445b31118c75e7ff7e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 555e66a8e6c64e44f8428382ac8b86ee, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2615851fd5702e547b7daabc8b006263, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -75,5 +75,5 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.35493988, g: 0.06655122, b: 0, a: 1}
+    - _EmissionColor: {r: 0.12500006, g: 0.75, b: 0, a: 1}
   m_BuildTextureStacks: []
