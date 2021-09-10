@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class LevelManager : MonoBehaviour
     private SlowMotion slowmo;
     public Slider sliderEnergy;
     public WallPusher WallPusher;
+    public PlayableDirector cinematic;
     
     [Range(1,5)] public float energyMax = 3f;
     [Range(0.1f, 10f)] public float wallSpeed = 2f;
@@ -42,6 +44,7 @@ public class LevelManager : MonoBehaviour
         nbrLevels = levels.Length;
         slowmoGameOverTimer = slowmoGameOverDuration;
         sliderEnergy.maxValue = energyMax;
+        cinematic.stopped += OnCinematicEnd;
     }
 
     #region LevelComplete
@@ -58,6 +61,7 @@ public class LevelManager : MonoBehaviour
         }
         AudioManager.instance.Play("nextLevel", currentLevel);
         UpdateLevel();
+        cinematic.Play();
         StartLevel();
     }
 
@@ -70,6 +74,18 @@ public class LevelManager : MonoBehaviour
     {
         PlayerController.instance.slowmo.slowcoef = levels[currentLevel].slowmoCoef;
         // + Change ambiant of the level to create different ambiance per level
+    }
+
+    void OnCinematicEnd(PlayableDirector cinematic)
+    {
+        StartLevel();
+    }
+
+    void OnCinematicStopped(PlayableDirector cinematic)
+    {
+        if (this.cinematic != cinematic) return;
+        
+        StartLevel();
     }
 
     void StartLevel()
