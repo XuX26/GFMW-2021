@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector2 rotation = Vector2.zero;
 
     private Vector3 startPos;
+    private Quaternion startLookDir;
 
 
     private void Awake()
@@ -30,6 +31,12 @@ public class PlayerController : MonoBehaviour
         slowmo = GetComponent<SlowMotion>();
         charaController = GetComponent<CharacterController>();
         startPos = transform.position;
+        startLookDir = cam.transform.rotation;
+    }
+
+    private void Start()
+    {
+        StartRun();
     }
 
     private void Update()
@@ -113,6 +120,7 @@ public class PlayerController : MonoBehaviour
         charaController.enabled = true;
         slowmo.RefreshEnergy();
         transform.rotation = Quaternion.identity;
+        cam.transform.rotation = startLookDir;
         GameManager.instance.ChangeState(State.INGAME);
     }
 }

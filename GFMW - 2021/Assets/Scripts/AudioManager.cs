@@ -17,13 +17,11 @@ public class AudioManager : MonoBehaviour
             return;
         }
         instance = this;
+        DontDestroyOnLoad(gameObject);
 
         foreach (SoundEffect sfx in soundEffects)
         {
-            sfx.source = gameObject.AddComponent<AudioSource>();
-            sfx.source.volume = sfx.volume;
-            sfx.source.priority = sfx.priority;
-            sfx.source.loop = sfx.loop;
+            sfx.InitSource(gameObject);
         }
     }
 
@@ -37,18 +35,56 @@ public class AudioManager : MonoBehaviour
         CheckIfMusicIsDone();
     }
 
+    // --- Play ---
+    #region Play
     public void Play(string name)
     {
         SoundEffect sfx = GetSfx(name);
 
         if (sfx == null)
         {
-            Debug.Log("/!\\ Sound : " + name + "not found /!\\");
+            Debug.LogWarning("/!\\ Sound : " + name + "not found /!\\");
             return;
         }
         sfx.source.clip = sfx.clip[UnityEngine.Random.Range(0, sfx.clip.Length)];
         sfx.source.Play();
     }
+    
+    public void Play(string name, int clipIndex)
+    {
+        SoundEffect sfx = GetSfx(name);
+
+        if (sfx == null || clipIndex >= sfx.clip.Length)
+        {
+            Debug.LogWarning("/!\\ Sound : " + name + "not found /!\\");
+            return;
+        }
+        sfx.source.clip = sfx.clip[clipIndex];
+        sfx.source.Play();
+    }
+
+    public void PlaySfx(SoundEffect sfx)
+    {
+        if (sfx == null || sfx.clip.Length == 0)
+        {
+            Debug.LogWarning("/!\\ Sound : " + sfx.clipName + "not found /!\\");
+            return;
+        }
+        sfx.source.clip = sfx.clip[UnityEngine.Random.Range(0, sfx.clip.Length)];
+        sfx.source.Play();
+    }
+    
+    public void PlaySfx(SoundEffect sfx, int clipIndex)
+    {
+        if (sfx == null || clipIndex >= sfx.clip.Length)
+        {
+            Debug.LogWarning("/!\\ Sound : " + sfx.clipName + "not found /!\\");
+            return;
+        }
+        sfx.source.clip = sfx.clip[clipIndex];
+        sfx.source.Play();
+    }
+    #endregion
 
     public void Stop(string name)
     {
@@ -152,11 +188,20 @@ public class SoundEffect
     [Range(0f, 1f)]
     public float volume;
 
-    [Range(0f, 256f)]
-    public int priority;
-
     public bool loop;
 
     [HideInInspector]
     public AudioSource source;
+
+    public void InitSource(GameObject gameObject)
+    {
+        source = gameObject.AddComponent<AudioSource>();
+        source.volume = volume;
+        source.loop = loop;
+    }
+
+    public void UpdatePitchToTimeScale()
+    {
+        source.pitch = Time.timeScale;
+    }
 }
