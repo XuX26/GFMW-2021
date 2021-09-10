@@ -31,12 +31,12 @@ public class PlayerController : MonoBehaviour
         slowmo = GetComponent<SlowMotion>();
         charaController = GetComponent<CharacterController>();
         startPos = transform.position;
-        startLookDir = cam.transform.rotation;
+        startLookDir = cam.transform.localRotation;
     }
 
     private void Start()
     {
-        StartRun();
+        ResetPos();
     }
 
     private void Update()
@@ -113,14 +113,13 @@ public class PlayerController : MonoBehaviour
     
     #endregion
     
-    public void StartRun()
+    public void ResetPos()
     {
         charaController.enabled = false;
         transform.position = startPos;
+        transform.rotation = Quaternion.identity;
+        cam.transform.localRotation = startLookDir;
         charaController.enabled = true;
         slowmo.RefreshEnergy();
-        transform.rotation = Quaternion.identity;
-        cam.transform.rotation = startLookDir;
-        GameManager.instance.ChangeState(State.INGAME);
     }
 }
