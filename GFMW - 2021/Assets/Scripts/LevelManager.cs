@@ -76,24 +76,32 @@ public class LevelManager : MonoBehaviour
         // + Change ambiant of the level to create different ambiance per level
     }
 
-    void OnCinematicEnd(PlayableDirector cinematic)
-    {
-        StartLevel();
-    }
-
-    void OnCinematicStopped(PlayableDirector cinematic)
+    void OnCinematicStart(PlayableDirector cinematic)
     {
         if (this.cinematic != cinematic) return;
         
+        GameManager.instance.state = State.TRANSI;
+        RestartPositions();
+    }
+    
+    void OnCinematicEnd(PlayableDirector cinematic)
+    {
+        if (this.cinematic != cinematic) return;
+
         StartLevel();
     }
 
     void StartLevel()
     {
-        WallPusher.ResetPos();
-        PlayerController.instance.StartRun();
         AudioManager.instance.Play("startLevel", currentLevel);
+        GameManager.instance.state = State.INGAME;
         Debug.Log("New lvl started ! ");
+    }
+
+    void RestartPositions()
+    {
+        PlayerController.instance.ResetPos();
+        WallPusher.ResetPos();
     }
     
     #endregion
