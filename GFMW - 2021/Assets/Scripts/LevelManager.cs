@@ -32,6 +32,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         UpdateLevel();
+        if(cinematic.state != PlayState.Playing)
+            GameManager.instance.state = State.INGAME;
     }
 
     private void Update()

@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour
     private void Update()
     {
         CheckIfMusicIsDone();
+        GetSfx("music").UpdatePitchToTimeScale(0.5f);
     }
 
     // --- Play ---
@@ -203,5 +204,9 @@ public class SoundEffect
     public void UpdatePitchToTimeScale()
     {
         source.pitch = Time.timeScale;
+    }
+    public void UpdatePitchToTimeScale(float ratioAdd)
+    {
+        source.pitch = Time.timeScale + (1-Time.timeScale) * ratioAdd;
     }
 }

@@ -12,22 +12,17 @@ public enum State {
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
-    public State state = State.INGAME;
+    public State state = State.PAUSE;
     public System.Action onStateChange;
 
     private void Awake()
     {
-        if (instance) {
+        if (instance != null && instance != this) {
             Destroy(gameObject);
             return;
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
-        
-    }
-
-    private void Start()
-    {
         LevelManager.instance.cinematic.Play();
     }
 
