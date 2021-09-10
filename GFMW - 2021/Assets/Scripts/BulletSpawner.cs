@@ -14,34 +14,47 @@ public class BulletSpawner : MonoBehaviour
 
     [Space]
     public GameObject bulletPrefab;
+    public SoundEffect sfxShot;
     public float delay;
-    bool isTriggered = true;
 
-    public ZoneDetector zoneDetector;
+    private bool istriggered;
+    [SerializeField] Transform maxRange;
 
-    private void Start()
+    private void Awake()
     {
-        ActiveSpawner();
-    }
-
-    void ActiveSpawner()
-    {
-        isTriggered = true;
-        lastShot = Time.time - fireRate + delay;
+        sfxShot.InitSource(gameObject);
+        sfxShot.source.spatialBlend = 1;
     }
 
     private void Update()
     {
-        if (!zoneDetector || zoneDetector.targetDetected)
+        if (IsInRange())
         {
             if (ShouldShot())
                 ShotABullet();
         }
+        sfxShot.UpdatePitchToTimeScale();
+    }
+
+    bool IsInRange()
+    {
+        if (maxRange)
+        {
+            float playerPosZ = PlayerController.instance.transform.position.z;
+            return (playerPosZ > maxRange.position.z && playerPosZ < transform.position.z + 1);
+        }
+        Debug.LogWarning("null ref on maxRange so the turret always shot");
+        return true;
     }
 
     private bool ShouldShot()
     {
-        return (isTriggered && Time.time - lastShot > fireRate);
+        if (!istriggered)
+        {
+            istriggered = true;
+            lastShot = Time.time - fireRate + delay;
+        }
+        return (Time.time - lastShot > fireRate);
     }
 
     void ShotABullet()
@@ -50,5 +63,6 @@ public class BulletSpawner : MonoBehaviour
         newBullet.bulletSpeed = bulletSpeed;
         lastShot = Time.time;
         Debug.Log("SHOT!");
+        AudioManager.instance.PlaySfx(sfxShot);
     }
 }

@@ -33,11 +33,11 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && state != State.PAUSE) {
-            ChangeState(State.PAUSE);
-        } else if (Input.GetKeyUp(KeyCode.Escape) && state == State.PAUSE) {
-            ChangeState(State.INGAME);
-        }
+        // if (Input.GetKeyUp(KeyCode.Escape) && state != State.PAUSE) {
+        //     ChangeState(State.PAUSE);
+        // } else if (Input.GetKeyUp(KeyCode.Escape) && state == State.PAUSE) {
+        //     ChangeState(State.INGAME);
+        // }
 
         if (Input.GetKeyDown(KeyCode.K))
         {

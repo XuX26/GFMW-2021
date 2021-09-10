@@ -2,28 +2,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
     private SlowMotion slowmo;
-
-    private bool isGameOver;
+    public Slider sliderEnergy;
+    public WallPusher WallPusher;
+    
+    [Range(1,5)] public float energyMax = 3f;
+    [Range(0.1f, 10f)] public float wallSpeed = 2f;
+    public LevelValues[] levels;
+    int currentLevel;
+    int nbrLevels;
+    
     public float slowmoGameOverDuration = 1.5f;
     private float slowmoGameOverTimer;
-    
-    int levelCount;
-    int nbrLevels;
-    [Range(0.2f, 1f)] public float[] coefPerLevel;
+    private bool isGameOver;
 
     private void Awake()
     {
-        // if (instance) {
-        //     Destroy(gameObject);
-        //     return;
-        // }
         instance = this;
         InitVars();
+    }
+
+    private void Start()
+    {
+        UpdateLevel();
     }
 
     private void Update()
@@ -33,8 +39,9 @@ public class LevelManager : MonoBehaviour
 
     void InitVars()
     {
-        nbrLevels = coefPerLevel.Length;
+        nbrLevels = levels.Length;
         slowmoGameOverTimer = slowmoGameOverDuration;
+        sliderEnergy.maxValue = energyMax;
     }
 
     #region LevelComplete
@@ -43,14 +50,15 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.ChangeState(State.TRANSI);
         Time.timeScale = 1;
         
-        levelCount++;
-        if (levelCount == coefPerLevel.Length)
+        currentLevel++;
+        if (currentLevel == levels.Length)
         {
             Win();
             return;
         }
+        AudioManager.instance.Play("nextLevel", currentLevel);
         UpdateLevel();
-        ResetPlayerAndWallPos();
+        StartLevel();
     }
 
     private void Win()
@@ -60,14 +68,18 @@ public class LevelManager : MonoBehaviour
 
     void UpdateLevel()
     {
-        PlayerController.instance.slowmo.slowcoef = coefPerLevel[levelCount];
+        PlayerController.instance.slowmo.slowcoef = levels[currentLevel].slowmoCoef;
         // + Change ambiant of the level to create different ambiance per level
     }
 
-    void ResetPlayerAndWallPos()
+    void StartLevel()
     {
+        WallPusher.ResetPos();
         PlayerController.instance.StartRun();
+        AudioManager.instance.Play("startLevel", currentLevel);
+        Debug.Log("New lvl started ! ");
     }
+    
     #endregion
     
     #region GameOver
@@ -78,15 +90,14 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.ChangeState(State.TRANSI);
         isGameOver = true;
         slowmoGameOverTimer = slowmoGameOverDuration;
+        AudioManager.instance.Play("gameOver");
     }
     
     private void UpdateOnGameOver()
     {
         if (!isGameOver) return;
 
-        Debug.Log(slowmoGameOverTimer);
         slowmoGameOverTimer -= Time.unscaledDeltaTime;
-        Debug.Log(slowmoGameOverTimer);
         float lerp = Mathf.Clamp(slowmoGameOverTimer/slowmoGameOverDuration, 0f, 1f);
         Time.timeScale = lerp;
         PlayerController.instance.UpdateOnDeath(lerp);
@@ -95,4 +106,18 @@ public class LevelManager : MonoBehaviour
     }
     #endregion
 
+}
+
+[Serializable]
+public class LevelValues
+{
+    [Range(0.2f, 0.9f)] public float slowmoCoef;
+    public Color ambiantColor;
+
+    public LevelValues(){}
+    public LevelValues(float slowmoCoef, Color ambiantColor)
+    {
+        slowmoCoef = slowmoCoef;
+        ambiantColor = ambiantColor;
+    }
 }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - bullet
+  - laserWall
+  - WallPusher
+  - WinZone
   layers:
   - Default
   - TransparentFX
