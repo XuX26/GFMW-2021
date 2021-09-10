@@ -7,11 +7,15 @@ public class WallPusher : MonoBehaviour
 {
     private float speed;
     private Vector3 startPos;
-    
+
+    private void Awake()
+    {
+        startPos = transform.position;
+    }
+
     private void Start()
     {
         speed = LevelManager.instance.wallSpeed;
-        startPos = transform.position;
     }
 
     public void ResetPos()
