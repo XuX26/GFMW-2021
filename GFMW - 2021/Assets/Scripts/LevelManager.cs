@@ -104,6 +104,8 @@ public class LevelManager : MonoBehaviour
         if(isGameOver) return;
         Debug.Log("GAME OVER");
         GameManager.instance.ChangeState(State.TRANSI);
+        PlayerController.instance.slowmo.slowmode = Slowmode.IDLE;
+        Time.timeScale = 1f;
         isGameOver = true;
         slowmoGameOverTimer = slowmoGameOverDuration;
         AudioManager.instance.Play("gameOver");
