@@ -53,7 +53,7 @@ public class SlowMotion : MonoBehaviour
         else
             energy -= Time.unscaledDeltaTime/3;
         
-        if (energy < fadeDuration)
+        if (energy < fadeDuration/3)
             slowmode = Slowmode.FADEOUT;
         
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
