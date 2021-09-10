@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
         charaController.enabled = true;
         slowmo.RefreshEnergy();
         transform.rotation = Quaternion.LookRotation(Vector3.forward);
+        cam.transform.rotation = Quaternion.LookRotation(Vector3.forward);
         GameManager.instance.ChangeState(State.INGAME);
     }
 }

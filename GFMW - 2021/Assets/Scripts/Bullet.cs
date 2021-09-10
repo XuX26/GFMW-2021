@@ -11,9 +11,16 @@ public class Bullet : MonoBehaviour
 
     void Awake()
     {
+        SetAudio();
+        Destroy(gameObject, 20f);
+    }
+
+    void SetAudio()
+    {
         sfx.InitSource(gameObject);
         sfx.source.spatialBlend = 1;
-        Destroy(gameObject, 6f);
+        sfx.source.maxDistance = 5f;
+        AudioManager.instance.PlaySfx(sfx);
     }
 
     private void Update()

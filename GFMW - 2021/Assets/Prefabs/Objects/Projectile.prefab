@@ -60,9 +60,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 5
   sfx:
-    clipName: 
-    clip: []
-    volume: 0
+    clipName: laser
+    clip:
+    - {fileID: 8300000, guid: 755bb99cce6a9cb46b76e766a2f5d59f, type: 3}
+    volume: 0.1
     loop: 0
     source: {fileID: 0}
 --- !u!1001 &3885833709589314021
